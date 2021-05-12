@@ -5,6 +5,14 @@
  */
 package cadastrodeanuncios;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Eduarda Amaral - carmoduda6@gmail.com
@@ -40,8 +48,8 @@ public class Anuncio extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         ValorInvestido = new javax.swing.JFormattedTextField();
         InvestimentoPorDia = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Salvar = new javax.swing.JButton();
+        Cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,12 +103,17 @@ public class Anuncio extends javax.swing.JFrame {
 
         InvestimentoPorDia.setText("00");
 
-        jButton1.setText("Salvar");
-
-        jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Salvar.setText("Salvar");
+        Salvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                SalvarActionPerformed(evt);
+            }
+        });
+
+        Cancelar.setText("Cancelar");
+        Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarActionPerformed(evt);
             }
         });
 
@@ -137,9 +150,9 @@ public class Anuncio extends javax.swing.JFrame {
                         .addGap(124, 124, 124))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(118, 118, 118)
-                        .addComponent(jButton1)
+                        .addComponent(Salvar)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addComponent(Cancelar)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -156,9 +169,9 @@ public class Anuncio extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(DataDeInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(DataDeInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -173,8 +186,8 @@ public class Anuncio extends javax.swing.JFrame {
                     .addComponent(InvestimentoPorDia))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(Salvar)
+                    .addComponent(Cancelar))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
@@ -199,13 +212,36 @@ public class Anuncio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_DataDeTerminoActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_CancelarActionPerformed
 
     private void ValorInvestidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValorInvestidoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ValorInvestidoActionPerformed
+
+    private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
+        // TODO add your handling code here:
+        AnuncioModel anuncio = new AnuncioModel();
+        PessoasModel cliente = new PessoasModel(Cliente.getSelectedItem().toString(),Cliente.getSelectedIndex());
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
+                double valorConvertido = Double.valueOf(ValorInvestido.getText().replaceAll(",", "."));
+        InvestimentoModel investimento = new InvestimentoModel(valorConvertido);
+        
+        anuncio.setNome(NomeAnuncio.getText());
+        anuncio.setCliente(cliente);
+        try {
+            anuncio.setDinicio(formato.parse(DataDeInicio.getText()));
+            anuncio.setDfinal(formato.parse(DataDeTermino.getText()));
+        } catch (ParseException ex) {
+            Logger.getLogger(Anuncio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        anuncio.setInvestimento(investimento);
+        
+        JOptionPane.showMessageDialog(null, "O anúncio foi salvo com sucesso!");
+        
+    }//GEN-LAST:event_SalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -243,14 +279,14 @@ public class Anuncio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Cancelar;
     private javax.swing.JComboBox<String> Cliente;
     private javax.swing.JFormattedTextField DataDeInicio;
     private javax.swing.JFormattedTextField DataDeTermino;
     private javax.swing.JLabel InvestimentoPorDia;
     private javax.swing.JTextField NomeAnuncio;
+    private javax.swing.JButton Salvar;
     private javax.swing.JFormattedTextField ValorInvestido;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
