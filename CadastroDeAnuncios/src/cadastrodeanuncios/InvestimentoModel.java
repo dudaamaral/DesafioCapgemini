@@ -11,9 +11,9 @@ package cadastrodeanuncios;
  */
 public class InvestimentoModel {
     
-    private double valor;
+    private Double valor;
 
-    public InvestimentoModel(double valor) {
+    public InvestimentoModel(Double valor) {
         this.valor = valor;
     }
 
@@ -24,12 +24,12 @@ public class InvestimentoModel {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
     
     public double calcularRetorno(){
         return getValor()*30;
        
-    }  
+    }
 }

@@ -94,7 +94,7 @@ public class Anuncio extends javax.swing.JFrame {
 
         jLabel7.setText("Valor investido:");
 
-        ValorInvestido.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        ValorInvestido.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         ValorInvestido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ValorInvestidoActionPerformed(evt);
@@ -213,7 +213,7 @@ public class Anuncio extends javax.swing.JFrame {
     }//GEN-LAST:event_DataDeTerminoActionPerformed
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_CancelarActionPerformed
 
     private void ValorInvestidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValorInvestidoActionPerformed
@@ -221,12 +221,10 @@ public class Anuncio extends javax.swing.JFrame {
     }//GEN-LAST:event_ValorInvestidoActionPerformed
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
-        // TODO add your handling code here:
         AnuncioModel anuncio = new AnuncioModel();
         PessoasModel cliente = new PessoasModel(Cliente.getSelectedItem().toString(),Cliente.getSelectedIndex());
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
-                double valorConvertido = Double.valueOf(ValorInvestido.getText().replaceAll(",", "."));
-        InvestimentoModel investimento = new InvestimentoModel(valorConvertido);
+        InvestimentoModel investimento = new InvestimentoModel(new Double(ValorInvestido.getText()));
         
         anuncio.setNome(NomeAnuncio.getText());
         anuncio.setCliente(cliente);
@@ -239,8 +237,7 @@ public class Anuncio extends javax.swing.JFrame {
         
         anuncio.setInvestimento(investimento);
         
-        JOptionPane.showMessageDialog(null, "O anúncio foi salvo com sucesso!");
-        
+        JOptionPane.showMessageDialog(null, "O anúncio foi salvo com sucesso!");      
     }//GEN-LAST:event_SalvarActionPerformed
 
     /**
