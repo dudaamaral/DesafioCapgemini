@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cadastrodeanuncios;
+package cadastrodeanuncios.dao;
 
 /**
  *
  * @author Eduarda Amaral - carmoduda6@gmail.com
  */
-public class PessoasModel {
+public class PessoaModel {
     
     private String nome;
-    private int ip;
+    private String ip;
 
-    public PessoasModel(String nome, int ip) {
+    public PessoaModel(String nome, String ip) {
         this.nome = nome;
         this.ip = ip;
     }
@@ -27,11 +27,11 @@ public class PessoasModel {
         this.nome = nome;
     }
 
-    public int getIp() {
+    public String getIp() {
         return ip;
     }
 
-    public void setIp(int ip) {
+    public void setIp(String ip) {
         this.ip = ip;
     }
     

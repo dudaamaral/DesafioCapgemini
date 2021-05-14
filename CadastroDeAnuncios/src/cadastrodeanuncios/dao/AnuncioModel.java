@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cadastrodeanuncios;
+package cadastrodeanuncios.dao;
 
 import java.util.Date;
 
@@ -14,11 +14,11 @@ import java.util.Date;
 public class AnuncioModel {
     
     private String nome;
-    private PessoasModel cliente;
+    private PessoaModel cliente;
     private Date dinicio, dfinal;
     private InvestimentoModel investimento;
 
-    public AnuncioModel(String nome, PessoasModel cliente, Date dinicio, Date dfinal, InvestimentoModel investimento) {
+    public AnuncioModel(String nome, PessoaModel cliente, Date dinicio, Date dfinal, InvestimentoModel investimento) {
         this.nome = nome;
         this.cliente = cliente;
         this.dinicio = dinicio;
@@ -38,11 +38,11 @@ public class AnuncioModel {
         this.nome = nome;
     }
 
-    public PessoasModel getCliente() {
+    public PessoaModel getCliente() {
         return cliente;
     }
 
-    public void setCliente(PessoasModel cliente) {
+    public void setCliente(PessoaModel cliente) {
         this.cliente = cliente;
     }
 
@@ -69,5 +69,6 @@ public class AnuncioModel {
     public void setInvestimento(InvestimentoModel investimento) {
         this.investimento = investimento;
     }
+    
     
 }

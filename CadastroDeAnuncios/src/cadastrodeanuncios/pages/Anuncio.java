@@ -3,12 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cadastrodeanuncios;
+package cadastrodeanuncios.pages;
 
+import cadastrodeanuncios.dao.AnuncioDAO;
+import cadastrodeanuncios.dao.PessoaModel;
+import cadastrodeanuncios.dao.InvestimentoModel;
+import cadastrodeanuncios.dao.AnuncioModel;
+import cadastrodeanuncios.dao.ConexaoDB;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
+import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -222,8 +230,9 @@ public class Anuncio extends javax.swing.JFrame {
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
         AnuncioModel anuncio = new AnuncioModel();
-        PessoasModel cliente = new PessoasModel(Cliente.getSelectedItem().toString(),Cliente.getSelectedIndex());
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
+        PessoaModel cliente = new PessoaModel(Cliente.getSelectedItem().toString(),"123.123.123.123");
+        DateFormat formato = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+        formato.setTimeZone(TimeZone.getTimeZone("Etc/UTC"));
         InvestimentoModel investimento = new InvestimentoModel(new Double(ValorInvestido.getText()));
         
         anuncio.setNome(NomeAnuncio.getText());
@@ -237,7 +246,9 @@ public class Anuncio extends javax.swing.JFrame {
         
         anuncio.setInvestimento(investimento);
         
-        JOptionPane.showMessageDialog(null, "O anúncio foi salvo com sucesso!");      
+        AnuncioDAO anuncioDao = new AnuncioDAO();
+        anuncioDao.criarAnuncio(anuncio);
+        JOptionPane.showMessageDialog(null, "O anúncio foi salvo com sucesso!");
     }//GEN-LAST:event_SalvarActionPerformed
 
     /**
