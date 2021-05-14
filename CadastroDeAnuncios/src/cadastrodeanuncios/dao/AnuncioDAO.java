@@ -47,4 +47,16 @@ public class AnuncioDAO {
         } 
         
         } 
+    public void consultarAnuncio(AnuncioModel anuncio){
+        conexao = new ConexaoDB().conectar();
+        String sqlRelatorio = "SELECT anuncios.id, nome, dataInicio, dataFinal, valor  \n" +
+            "FROM anuncios\n" +
+            "INNER JOIN investimentos\n" +
+            "ON anuncios.fk_investimento = investimentos.id\n" +
+            "INNER JOIN clientes\n" +
+            "ON anuncios.fk_pessoa = clientes.id\n" +
+            "WHERE dataInicio = " + anuncio.getDinicio();
+                
+        
+    }
 }
