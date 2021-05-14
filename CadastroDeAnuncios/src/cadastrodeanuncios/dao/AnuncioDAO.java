@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -54,9 +56,26 @@ public class AnuncioDAO {
             "INNER JOIN investimentos\n" +
             "ON anuncios.fk_investimento = investimentos.id\n" +
             "INNER JOIN clientes\n" +
-            "ON anuncios.fk_pessoa = clientes.id\n" +
-            "WHERE dataInicio = " + anuncio.getDinicio();
+            "ON anuncios.fk_pessoa = clientes.id\n";
+            if(anuncio.getDinicio() != null){
+                sqlRelatorio = sqlRelatorio + "WHERE dataInicio = " + new java.sql.Date(anuncio.getDinicio().getTime());
+            }
+            
+            if(anuncio.getDfinal() != null){
+                sqlRelatorio = sqlRelatorio + "WHERE dataFinal = " + new java.sql.Date(anuncio.getDfinal().getTime());
+            }
+            
+            if(anuncio.getCliente() != null && !anuncio.getCliente().getNome().equals("")){
+                sqlRelatorio = sqlRelatorio + "WHERE pessoas.nome = 'Eduarda'"; 
+            }   
+            PreparedStatement stmt;
+            try {
+                stmt = conexao.prepareStatement(sqlRelatorio);
+                stmt.executeUpdate();
                 
-        
+                stmt.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(AnuncioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            } 
     }
 }

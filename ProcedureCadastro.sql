@@ -39,10 +39,10 @@ VALUES(1,1000);
 INSERT INTO anuncios(id, nome, dataInicio, dataFinal, fk_pessoa, fk_investimento)
 VALUES (1,'Divulga Tudo','2021-05-12','2021-05-20',1,1);
 
-SELECT anuncios.id, nome, dataInicio, dataFinal, valor  
+SELECT anuncios.id, anuncios.nome, dataInicio, dataFinal, valor  
 FROM anuncios
 INNER JOIN investimentos
 ON anuncios.fk_investimento = investimentos.id
-INNER JOIN clientes
-ON anuncios.fk_pessoa = clientes.id
-WHERE dataInicio = '2021-05-12';
+INNER JOIN pessoas
+ON anuncios.fk_pessoa = pessoas.id
+WHERE pessoas.nome = 'Eduarda';
