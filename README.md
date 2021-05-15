@@ -15,9 +15,9 @@ _Execução do Programa:_
 * Dê duplo clique no arquivo 'DesafioCapgeminiCalculadora.jar';
 * Veja o programa em execução: 
 
-![alt text](./images/EntradaProjeto1.png)
+![image](https://github.com/dudaamaral/DesafioCapgemini/blob/main/Images/EntradaProjeto1.PNG)
 
-![alt text](./images/SaidaProjeto1.png)
+![image](https://github.com/dudaamaral/DesafioCapgemini/blob/main/Images/SaidaProjeto1.PNG)
 
 ## Projeto 2
 _Execução do Programa:_
@@ -26,11 +26,11 @@ _Execução do Programa:_
 * Dê duplo clique no arquivo 'CadastroDeAnuncios.jar';
 * Cadastre um novo anúncio: 
 
-![alt text](./images/SaidaProjeto2.png)
+![image](https://github.com/dudaamaral/DesafioCapgemini/blob/main/Images/SaidaProjeto2.PNG)
 
 * Gere um relatório de anúncio: 
 
-![alt text](./images/EntradaProjeto2.png)
+![image](https://github.com/dudaamaral/DesafioCapgemini/blob/main/Images/EntradaProjeto2.PNG)
 
 ## Contatos
 Para dúvidas e sugestões sobre este projeto acesse este link: 
