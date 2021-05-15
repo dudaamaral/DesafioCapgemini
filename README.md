@@ -12,7 +12,9 @@ _Configurações:_
 ## Projeto 1
 _Execução do Programa:_
 * Acesse a pasta 'DesafioCapgeminiCalculadora';
-* Dê duplo clique no arquivo 'DesafioCapgeminiCalculadora.jar';
+```
+* Execute o comando java -jar DesafioCapgeminiCalculadora.jar;
+```
 * Veja o programa em execução: 
 
 ![image](https://github.com/dudaamaral/DesafioCapgemini/blob/main/Images/EntradaProjeto1.PNG)
@@ -21,13 +23,17 @@ _Execução do Programa:_
 
 ## Projeto 2
 _Execução do Programa:_
-* Utilize o arquivo .sql para configurar a base de dados MySQL;
+* Utilize o arquivo ProcedureCadastro.sql para configurar a base de dados MySQL;
 * Acesse a pasta 'CadastroDeAnuncios';
-* Dê duplo clique no arquivo 'CadastroDeAnuncios.jar';
+```
+* Execute o comando java -jar CadastroDeAnuncios.jar;
+```
 * Cadastre um novo anúncio: 
 
 ![image](https://github.com/dudaamaral/DesafioCapgemini/blob/main/Images/SaidaProjeto2.PNG)
-
+```
+* Execute o comando java -jar RelatorioDeAnuncios.jar.
+```
 * Gere um relatório de anúncio: 
 
 ![image](https://github.com/dudaamaral/DesafioCapgemini/blob/main/Images/EntradaProjeto2.PNG)
