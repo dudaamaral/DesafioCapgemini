@@ -15,9 +15,9 @@ _Execução do Programa:_
 * Dê duplo clique no arquivo 'DesafioCapgeminiCalculadora.jar';
 * Veja o programa em execução: 
 
-![alt text](EntradaProjeto1.png)
+![alt text](./images/EntradaProjeto1.png)
 
-![alt text](SaidaProjeto1.png)
+![alt text](./images/SaidaProjeto1.png)
 
 ## Projeto 2
 _Execução do Programa:_
@@ -26,11 +26,11 @@ _Execução do Programa:_
 * Dê duplo clique no arquivo 'CadastroDeAnuncios.jar';
 * Cadastre um novo anúncio: 
 
-![alt text](SaidaProjeto2.png)
+![alt text](./images/SaidaProjeto2.png)
 
 * Gere um relatório de anúncio: 
 
-![alt text](EntradaProjeto2.png)
+![alt text](./images/EntradaProjeto2.png)
 
 ## Contatos
 Para dúvidas e sugestões sobre este projeto acesse este link: 
