@@ -8,6 +8,7 @@ package cadastrodeanuncios.dao;
 import java.sql.Connection;
 import java.util.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,33 +50,50 @@ public class AnuncioDAO {
         } 
         
         } 
-    public void consultarAnuncio(AnuncioModel anuncio){
+    public Object consultarAnuncio(AnuncioModel anuncio){
         conexao = new ConexaoDB().conectar();
-        String sqlRelatorio = "SELECT anuncios.id, nome, dataInicio, dataFinal, valor  \n" +
-            "FROM anuncios\n" +
-            "INNER JOIN investimentos\n" +
-            "ON anuncios.fk_investimento = investimentos.id\n" +
-            "INNER JOIN clientes\n" +
-            "ON anuncios.fk_pessoa = clientes.id\n";
+        ResultSet resultado = null;
+        Object valorRetornado = null;
+        String sqlRelatorio = "SELECT SUM(valor) " +
+            "FROM anuncios " +
+            "INNER JOIN investimentos " +
+            "ON anuncios.fk_investimento = investimentos.id " +
+            "INNER JOIN pessoas " +
+            "ON anuncios.fk_pessoa = pessoas.id " +
+            "WHERE 1=1 ";
             if(anuncio.getDinicio() != null){
-                sqlRelatorio = sqlRelatorio + "WHERE dataInicio = " + new java.sql.Date(anuncio.getDinicio().getTime());
+                sqlRelatorio = sqlRelatorio + " AND dataInicio >= " + new java.sql.Date(anuncio.getDinicio().getTime());
             }
             
             if(anuncio.getDfinal() != null){
-                sqlRelatorio = sqlRelatorio + "WHERE dataFinal = " + new java.sql.Date(anuncio.getDfinal().getTime());
+                sqlRelatorio = sqlRelatorio + " AND dataFinal <= " + new java.sql.Date(anuncio.getDfinal().getTime());
             }
             
             if(anuncio.getCliente() != null && !anuncio.getCliente().getNome().equals("")){
-                sqlRelatorio = sqlRelatorio + "WHERE pessoas.nome = 'Eduarda'"; 
-            }   
+                sqlRelatorio = sqlRelatorio + " AND pessoas.nome = '" + anuncio.getCliente().getNome() + "'"; 
+            }
+            sqlRelatorio = sqlRelatorio + "ORDER BY valor";
             PreparedStatement stmt;
             try {
                 stmt = conexao.prepareStatement(sqlRelatorio);
-                stmt.executeUpdate();
+                resultado = stmt.executeQuery();
+                valorRetornado = validaRetorno(resultado);
                 
                 stmt.close();
             } catch (SQLException ex) {
                 Logger.getLogger(AnuncioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return valorRetornado;
+    }
+    private Object validaRetorno(ResultSet resultado){   
+        try {
+            if(resultado != null && resultado.next()){
+                return resultado.getObject("valor");
             } 
+        } catch (SQLException ex) {
+            Logger.getLogger(AnuncioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+ 
     }
 }
