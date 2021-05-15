@@ -39,7 +39,7 @@ VALUES(1,1000);
 INSERT INTO anuncios(id, nome, dataInicio, dataFinal, fk_pessoa, fk_investimento)
 VALUES (1,'Divulga Tudo','2021-05-12','2021-05-20',1,1);
 
-SELECT DISTINCT SUM(valor)  
+SELECT DISTINCT SUM(valor) as valor  
 FROM anuncios
 INNER JOIN investimentos
 ON anuncios.fk_investimento = investimentos.id

@@ -86,11 +86,11 @@ public class AnuncioDAO {
             return valorRetornado;
     }
     private Object validaRetorno(ResultSet resultado) throws SQLException{ 
-        if(resultado.isBeforeFirst() && resultado.getRow() > 0){               
-            return resultado.getObject("valor");                  
-        }  else{
+        if(resultado == null || resultado.next() == false){               
             JOptionPane.showMessageDialog(null,"Consulta não retornou resultado.");
-        }   
-        return null;
+
+            return null;
+        }  
+        return resultado.getObject("valor");
     }
 }
