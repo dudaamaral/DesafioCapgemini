@@ -26,7 +26,7 @@ import javax.swing.JOptionPane;
 public class RelatorioAnuncio extends javax.swing.JFrame {
 
     private AnuncioModel anuncio;
-
+    private Double valorConvertido;
     /**
      * Creates new form RelatorioAnuncio
      */
@@ -93,7 +93,7 @@ public class RelatorioAnuncio extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Valor total investido:");
+        jLabel5.setText("Valor total investido: R$");
 
         GerarRelatorio.setText("Gerar relatório");
         GerarRelatorio.addActionListener(new java.awt.event.ActionListener() {
@@ -120,9 +120,19 @@ public class RelatorioAnuncio extends javax.swing.JFrame {
 
         VisualizacaoMaxima.setEditable(false);
         VisualizacaoMaxima.setText("00");
+        VisualizacaoMaxima.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VisualizacaoMaximaActionPerformed(evt);
+            }
+        });
 
         CliqueMaximo.setEditable(false);
         CliqueMaximo.setText("00");
+        CliqueMaximo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CliqueMaximoActionPerformed(evt);
+            }
+        });
 
         CompartilhamentoMaximo.setEditable(false);
         CompartilhamentoMaximo.setText("00");
@@ -135,45 +145,48 @@ public class RelatorioAnuncio extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addGap(18, 18, 18)
-                                .addComponent(CompartilhamentoMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(CompartilhamentoMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel5))
-                                .addGap(26, 26, 26)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(DataFinal, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-                                            .addComponent(DataInicio, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGap(26, 26, 26)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(Cancelar)
-                                                .addGap(8, 8, 8)))
-                                        .addGap(59, 59, 59)
-                                        .addComponent(GerarRelatorio))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(ValorInvestido, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(Cliente, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                    .addComponent(DataFinal, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                                                    .addComponent(DataInicio, javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(Cancelar)
+                                                        .addGap(8, 8, 8)))
+                                                .addGap(59, 59, 59)
+                                                .addComponent(GerarRelatorio))
+                                            .addComponent(Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(ValorInvestido, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel7))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(VisualizacaoMaxima, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(CliqueMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(153, 153, 153)
-                            .addComponent(jLabel1))))
+                                .addComponent(VisualizacaoMaxima)
+                                .addGap(127, 127, 127))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addComponent(jLabel1)))
                 .addGap(24, 24, 24))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(CliqueMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(151, 151, 151))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,14 +260,32 @@ public class RelatorioAnuncio extends javax.swing.JFrame {
     private void GerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GerarRelatorioActionPerformed
         AnuncioDAO anuncioDao = new AnuncioDAO();
         Object resultado = anuncioDao.consultarAnuncio(anuncio);
-        Double valorConvertido = new Double(resultado.toString());
+        
+        valorConvertido = new Double(resultado.toString());
         ValorInvestido.setText(valorConvertido.toString()); 
+        
+        Double quantidadeMaxima = valorConvertido * 30 *40+(((((valorConvertido * 30 *40)*12)/100)*3)/20)*3;
+        VisualizacaoMaxima.setText(quantidadeMaxima.toString());
+        
+        Double cliquesMaximo = (((valorConvertido * 30 *40)*12)/100);
+        CliqueMaximo.setText(cliquesMaximo.toString());
+        
+        Double compartilhamentoMaximo = ((((valorConvertido * 30 *40)*12)/100)*3)/20;
+        CompartilhamentoMaximo.setText(compartilhamentoMaximo.toString());
         JOptionPane.showMessageDialog(null,"O relatório foi gerado com sucesso!");
     }//GEN-LAST:event_GerarRelatorioActionPerformed
 
     private void ValorInvestidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValorInvestidoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ValorInvestidoActionPerformed
+
+    private void VisualizacaoMaximaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VisualizacaoMaximaActionPerformed
+
+    }//GEN-LAST:event_VisualizacaoMaximaActionPerformed
+
+    private void CliqueMaximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CliqueMaximoActionPerformed
+
+    }//GEN-LAST:event_CliqueMaximoActionPerformed
 
     /**
      * @param args the command line arguments

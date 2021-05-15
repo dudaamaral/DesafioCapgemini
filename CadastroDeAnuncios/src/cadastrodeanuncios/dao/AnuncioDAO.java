@@ -54,7 +54,7 @@ public class AnuncioDAO {
         conexao = new ConexaoDB().conectar();
         ResultSet resultado = null;
         Object valorRetornado = null;
-        String sqlRelatorio = "SELECT SUM(valor) " +
+        String sqlRelatorio = "SELECT DISTINCT SUM(valor) as valor " +
             "FROM anuncios " +
             "INNER JOIN investimentos " +
             "ON anuncios.fk_investimento = investimentos.id " +
@@ -72,7 +72,6 @@ public class AnuncioDAO {
             if(anuncio.getCliente() != null && !anuncio.getCliente().getNome().equals("")){
                 sqlRelatorio = sqlRelatorio + " AND pessoas.nome = '" + anuncio.getCliente().getNome() + "'"; 
             }
-            sqlRelatorio = sqlRelatorio + "ORDER BY valor";
             PreparedStatement stmt;
             try {
                 stmt = conexao.prepareStatement(sqlRelatorio);

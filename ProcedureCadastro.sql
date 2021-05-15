@@ -45,5 +45,8 @@ INNER JOIN investimentos
 ON anuncios.fk_investimento = investimentos.id
 INNER JOIN pessoas
 ON anuncios.fk_pessoa = pessoas.id
-WHERE 1=1;
+WHERE 1=1
+AND dataInicio >= '2021-05-21'
+AND dataFinal <= '2021-05-24'
+AND pessoas.nome = 'Cliente 3';
 SELECT * FROM anuncios;
