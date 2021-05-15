@@ -29,7 +29,7 @@ public class Investimento {
     }
     
     public double calcularRetorno(){
-        return getValor()*30;
+        return getValor()* 30 *40+(((((getValor() * 30 *40)*12)/100)*3)/20)*3;
        
     }  
 
