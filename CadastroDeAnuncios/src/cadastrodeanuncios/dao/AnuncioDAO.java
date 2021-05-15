@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -84,15 +85,12 @@ public class AnuncioDAO {
             }
             return valorRetornado;
     }
-    private Object validaRetorno(ResultSet resultado){   
-        try {
-            if(resultado != null && resultado.next()){
-                return resultado.getObject("valor");
-            } 
-        } catch (SQLException ex) {
-            Logger.getLogger(AnuncioDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    private Object validaRetorno(ResultSet resultado) throws SQLException{ 
+        if(resultado.isBeforeFirst() && resultado.getRow() > 0){               
+            return resultado.getObject("valor");                  
+        }  else{
+            JOptionPane.showMessageDialog(null,"Consulta não retornou resultado.");
+        }   
         return null;
- 
     }
 }
