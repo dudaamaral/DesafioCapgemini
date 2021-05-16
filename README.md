@@ -48,4 +48,4 @@ _Execução do Programa:_
 
 ## Contatos
 Para dúvidas e sugestões sobre este projeto acesse neste [link](https://github.com/dudaamaral/DesafioCapgemini/projects)
-Ou entre em contato: carmoduda6@gmail.com
+ou entre em contato: carmoduda6@gmail.com
