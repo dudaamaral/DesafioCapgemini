@@ -5,8 +5,8 @@
  */
 package cadastrodeanuncios.dao;
 
+import cadastrodeanuncios.model.AnuncioModel;
 import java.sql.Connection;
-import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -51,7 +51,7 @@ public class AnuncioDAO {
         } 
         
         } 
-    public Object consultarAnuncio(AnuncioModel anuncio){
+    public Object consultarAnuncio(AnuncioModel anuncio){     
         conexao = new ConexaoDB().conectar();
         ResultSet resultado = null;
         Object valorRetornado = null;
@@ -77,13 +77,25 @@ public class AnuncioDAO {
             try {
                 stmt = conexao.prepareStatement(sqlRelatorio);
                 resultado = stmt.executeQuery();
-                valorRetornado = validaRetorno(resultado);
+                valorRetornado = this.validaRetorno(resultado);
                 
                 stmt.close();
             } catch (SQLException ex) {
                 Logger.getLogger(AnuncioDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
             return valorRetornado;
+    }
+    public AnuncioModel validaAnuncio(AnuncioModel anuncio) {
+        if(anuncio == null || 
+        anuncio.getNome().equals("") || 
+        anuncio.getDinicio() == null || 
+        anuncio.getInvestimento() == null || 
+        anuncio.getCliente() == null ||
+        anuncio.getInvestimento().getValor() == 0){
+            
+            return null;
+        }
+        return anuncio;
     }
     private Object validaRetorno(ResultSet resultado) throws SQLException{ 
         if(resultado == null || resultado.next() == false){               

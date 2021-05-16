@@ -6,10 +6,8 @@
 package cadastrodeanuncios.pages;
 
 import cadastrodeanuncios.dao.AnuncioDAO;
-import cadastrodeanuncios.dao.AnuncioModel;
-import cadastrodeanuncios.dao.PessoaModel;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import cadastrodeanuncios.model.AnuncioModel;
+import cadastrodeanuncios.model.PessoaModel;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

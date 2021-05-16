@@ -5,7 +5,6 @@
  */
 package cadastrodeanuncios.dao;
 
-import cadastrodeanuncios.pages.Anuncio;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

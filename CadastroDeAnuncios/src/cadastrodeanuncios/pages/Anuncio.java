@@ -6,9 +6,9 @@
 package cadastrodeanuncios.pages;
 
 import cadastrodeanuncios.dao.AnuncioDAO;
-import cadastrodeanuncios.dao.PessoaModel;
-import cadastrodeanuncios.dao.InvestimentoModel;
-import cadastrodeanuncios.dao.AnuncioModel;
+import cadastrodeanuncios.model.PessoaModel;
+import cadastrodeanuncios.model.InvestimentoModel;
+import cadastrodeanuncios.model.AnuncioModel;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -213,25 +213,38 @@ public class Anuncio extends javax.swing.JFrame {
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
         AnuncioModel anuncio = new AnuncioModel();
-        PessoaModel cliente = new PessoaModel(Cliente.getSelectedItem().toString(),"123.123.123.123");
-        DateFormat formato = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
-        formato.setTimeZone(TimeZone.getTimeZone("Etc/UTC"));
-        InvestimentoModel investimento = new InvestimentoModel(new Double(ValorInvestido.getText()));
-        
-        anuncio.setNome(NomeAnuncio.getText());
-        anuncio.setCliente(cliente);
-        try {
-            anuncio.setDinicio(formato.parse(DataDeInicio.getText()));
-            anuncio.setDfinal(formato.parse(DataDeTermino.getText()));
-        } catch (ParseException ex) {
-            Logger.getLogger(Anuncio.class.getName()).log(Level.SEVERE, null, ex);
+        if("".equals(NomeAnuncio.getText()) || 
+           "".equals(DataDeInicio.getText()) || 
+           "".equals(Cliente.getSelectedItem().toString()) || 
+           "".equals(ValorInvestido.getText())){
+            
+            JOptionPane.showMessageDialog(null,"Preencha os campos em branco."); 
         }
+        else{
+            PessoaModel cliente = new PessoaModel(Cliente.getSelectedItem().toString(),"123.123.123.123");
+            DateFormat formato = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+            formato.setTimeZone(TimeZone.getTimeZone("Etc/UTC"));
+            InvestimentoModel investimento = new InvestimentoModel(new Double(ValorInvestido.getText()));
+
+            anuncio.setNome(NomeAnuncio.getText());
+            anuncio.setCliente(cliente);
+            try {
+                anuncio.setDinicio(formato.parse(DataDeInicio.getText()));
+                anuncio.setDfinal(formato.parse(DataDeTermino.getText()));
+            } catch (ParseException ex) {
+                Logger.getLogger(Anuncio.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            anuncio.setInvestimento(investimento);
+
+            AnuncioDAO anuncioDao = new AnuncioDAO();
+            anuncioDao.criarAnuncio(anuncio);
+
+            JOptionPane.showMessageDialog(null, "O anúncio foi salvo com sucesso!");
+                  
+        }
+    
         
-        anuncio.setInvestimento(investimento);
-        
-        AnuncioDAO anuncioDao = new AnuncioDAO();
-        anuncioDao.criarAnuncio(anuncio);
-        JOptionPane.showMessageDialog(null, "O anúncio foi salvo com sucesso!");
     }//GEN-LAST:event_SalvarActionPerformed
 
     /**

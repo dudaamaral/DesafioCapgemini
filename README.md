@@ -31,6 +31,9 @@ _Execução do Programa:_
 * Cadastre um novo anúncio: 
 
 ![image](https://github.com/dudaamaral/DesafioCapgemini/blob/main/Images/SaidaProjeto2.PNG)
+
+![image](https://github.com/dudaamaral/DesafioCapgemini/blob/main/Images/Preencher.PNG)
+
 ```
 * Execute o comando java -jar RelatorioDeAnuncios.jar.
 ```
@@ -38,6 +41,11 @@ _Execução do Programa:_
 
 ![image](https://github.com/dudaamaral/DesafioCapgemini/blob/main/Images/EntradaProjeto2.PNG)
 
+## Testes
+* Utilize o programa NetBeans IDE para rodar os testes do projeto Cadastro de Anúncios:
+
+![image](https://github.com/dudaamaral/DesafioCapgemini/blob/main/Images/ResultadoDosTestes.PNG)
+
 ## Contatos
-Para dúvidas e sugestões sobre este projeto acesse este link: 
+Para dúvidas e sugestões sobre este projeto acesse neste [link](https://github.com/dudaamaral/DesafioCapgemini/projects)
 Ou entre em contato: carmoduda6@gmail.com
